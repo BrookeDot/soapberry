@@ -121,10 +121,11 @@ if (! class_exists('AckeeWP_Admin_Settings') ) :
             <th scope="row"><label for="ackeewp_tracker"><?php _e('Ackee Tracker', 'ackeewp'); ?> </label></th>
             <td>
                 <input name="ackeewp_settings[tracking_script]" type="text" id="ackeewp_tracking_script" value="<?php echo ( esc_attr($ackeewp_settings['tracking_script']) ); ?>" placeholder="tracking.js" class="regular-text ltr" required>
-                <?php esc_html(
-                    sprintf(
-                        esc_html('The name of your <a href="%s">Ackee Tracker</a>. The default is %stracking.js%s.</strong></p>', 'ackeewp'),
-                        'https://github.com/electerious/Ackee#tracker', '<code>', '</code>' 
+				<p class="description" id="ackeewp_domain_id-description">
+				<?php 
+                   echo( sprintf(
+                        __( 'The name of your <a href="%s">Ackee Tracker</a>. The default is %stracking.js%s.', 'ackeewp'),
+                        esc_url( 'https://github.com/electerious/Ackee#tracker' ), '<code>', '</code>' 
                     ) 
                 );?>
                 </p>
@@ -135,7 +136,7 @@ if (! class_exists('AckeeWP_Admin_Settings') ) :
             <td>
                 <input name="ackeewp_settings[domain_id]" type="text" id="ackeewp_domain_id" value="<?php echo ( esc_attr($ackeewp_settings['domain_id']) ); ?>" placeholder="Domain ID" class="regular-text" required>
                 <p class="description" id="ackeewp_domain_id-description">
-                        <?php esc_html(sprintf(__('The unique domain ID for %s.', 'ackeewp'), esc_url_raw(home_url()))); ?>
+                        <?php echo( sprintf( esc_html( 'The unique domain ID for %s.', 'ackeewp' ), esc_url_raw( home_url() ) ) ); ?>
                     </p>
             </td>
             </tr>
