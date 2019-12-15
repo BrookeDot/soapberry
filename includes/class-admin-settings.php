@@ -17,7 +17,7 @@ namespace AckeeWP;
  * Adds the WordPress settings page
  */
 if (! class_exists('AckeeWP_Admin_Settings') ) :
-    class AckeeWP_Settings
+    class AckeeWP_Admin_Settings
     {
 
         /**
