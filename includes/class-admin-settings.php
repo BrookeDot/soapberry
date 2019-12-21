@@ -6,7 +6,7 @@
  *
  * @package   Ackee_WP
  * @author    Brooke.
- * @copyright 2020 Brooke.
+ * @copyright 2019 Brooke.
  * @license   GPL-3.0-or-later
  * @link      https://brooke.codes/plugins/ackee-wp
  */
@@ -74,7 +74,7 @@ if (! class_exists('AckeeWP_Admin_Settings') ) :
         {
 
             // If Nonce is invalid don't update the option data
-            if (! isset($_POST['ackeewp_settings_options_nonce']) || ! wp_verify_nonce($_POST['ackeewp_settings_options_nonce'], 'ackeewp_settings_save_nonce') ) {
+            if (! isset( $_POST['ackeewp_settings_options_nonce'] ) || ! wp_verify_nonce( $_POST['ackeewp_settings_options_nonce'], 'ackeewp_settings_save_nonce') ) {
                 return;
             }
             $ackeewp_settings = $settings;
@@ -89,7 +89,6 @@ if (! class_exists('AckeeWP_Admin_Settings') ) :
             return $ackeewp_settings;
         }
          
- 
         /**
          * Settings page display callback.
          *
@@ -103,52 +102,53 @@ if (! class_exists('AckeeWP_Admin_Settings') ) :
             ?>
         
         <div class="wrap">
-        <h1><?php _e('Ackee WP Settings', 'ackeewp'); ?></h1>
+        <h1><?php echo esc_html__('Ackee WP Settings', 'ackeewp'); ?></h1>
         <table class="form-table" role="presentation">
         <form method="post" action="options.php">
             <?php settings_fields('ackeewp_settings_group'); ?>
         <tbody>
             <tr>
-                <th scope="row"><label for="ackeewp_instance_url"><?php _e('Ackee Install URL', 'ackeewp'); ?></label></th>
+                <th scope="row"><label for="ackeewp_instance_url"><?php echo esc_html__('Ackee Install URL', 'ackeewp'); ?></label></th>
                 <td>
                     <input name="ackeewp_settings[instance_url]" type="url" id="ackeewp_instance_url" value="<?php echo ( esc_url($ackeewp_settings['instance_url']) ); ?>" class="regular-text" placeholder="Ackee Install URL" required>
                     <p class="description" id="ackeewp-tracking-script-description">
-                        <?php _e('The base URL for your Ackee install.', 'ackeewp') ?>
+                        <?php echo esc_html__('The base URL for your Ackee install.', 'ackeewp') ?>
                     </p>
                 </td>
             </tr>
             <tr>
-            <th scope="row"><label for="ackeewp_tracker"><?php _e('Ackee Tracker', 'ackeewp'); ?> </label></th>
+            <th scope="row"><label for="ackeewp_tracker"><?php echo esc_html__('Ackee Tracker', 'ackeewp'); ?> </label></th>
             <td>
                 <input name="ackeewp_settings[tracking_script]" type="text" id="ackeewp_tracking_script" value="<?php echo ( esc_attr($ackeewp_settings['tracking_script']) ); ?>" placeholder="tracking.js" class="regular-text ltr" required>
 				<p class="description" id="ackeewp_domain_id-description">
-				<?php 
-                   echo( sprintf(
-                        __( 'The name of your <a href="%s">Ackee Tracker</a>. The default is %stracking.js%s.', 'ackeewp'),
-                        esc_url( 'https://github.com/electerious/Ackee#tracker' ), '<code>', '</code>' 
-                    ) 
-                );?>
+                <?php printf(
+                   esc_html__( '%1$s %2$s. %3$s.', 'ackeewp' ),
+                   esc_html__( 'The name of your', 'ackeewp' ),
+                   sprintf( '<a href="%s">%s</a>', esc_url( 'https://github.com/electerious/Ackee#tracker' ), esc_html__( 'Ackee Tracker', 'ackeewp' ) ),
+                   sprintf( '%s <code>%s</code>', esc_html__( 'The default value is', 'ackeewp' ) , esc_html__( 'tracking.js', 'ackeewp' ) )
+                );
+                ?>
                 </p>
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="ackeewp_domain_id"><?php _e('Ackee Domain ID', 'ackeewp'); ?></label></th>
+            <th scope="row"><label for="ackeewp_domain_id"><?php echo esc_html__('Ackee Domain ID', 'ackeewp'); ?></label></th>
             <td>
                 <input name="ackeewp_settings[domain_id]" type="text" id="ackeewp_domain_id" value="<?php echo ( esc_attr($ackeewp_settings['domain_id']) ); ?>" placeholder="Domain ID" class="regular-text" required>
                 <p class="description" id="ackeewp_domain_id-description">
-                        <?php echo( sprintf( esc_html( 'The unique domain ID for %s.', 'ackeewp' ), esc_url_raw( home_url() ) ) ); ?>
+                        <?php printf( esc_html( 'The unique Domain ID for %s.', 'ackeewp' ), esc_url_raw( home_url() ) ); ?>
                     </p>
             </td>
             </tr>
             <tr>
-                <th scope="row"><?php _e('Exclude Logged In', 'ackeewp'); ?></th>
+                <th scope="row"><?php echo esc_html__('Exclude Logged In', 'ackeewp'); ?></th>
                 <td><label for="ackeewp_exclude_logged_in"><input name="ackeewp_settings[exclude_logged_in]" type="checkbox" id="ackeewp_exclude_logged_in" value="1" <?php checked($exclude_logged_in, 1); ?> > 
-            <?php _e('If checked, the tracking code won\'t be output for logged in visits.', 'ackeewp'); ?></label></td>
+            <?php echo esc_html__('If checked, the tracking code won\'t be output for logged in visits.', 'ackeewp'); ?></label></td>
             </tr>
             </tbody>
         </table>
             <?php echo ( wp_nonce_field('ackeewp_settings_save_nonce', 'ackeewp_settings_options_nonce') ); ?>
-            <?php echo submit_button(); ?>
+            <?php submit_button(); ?>
         </form>
             <?php 
         } //end of admin page settings

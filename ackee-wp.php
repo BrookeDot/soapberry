@@ -4,14 +4,14 @@
  *
  * @package   Ackee_WP
  * @author    Brooke.
- * @copyright 2020 Brooke.
+ * @copyright 2019 Brooke.
  * @license   GPL-3.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name:       Ackee WP
  * Plugin URI:        https://brooke.codes/plugins/ackee-wp
  * Description:       Adds the Ackee JavaScript to your WordPress site.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 4.5
  * Requires PHP:      7.0
  * Author:            Brooke.
@@ -93,7 +93,6 @@ class AckeeWP
         $option_name = 'ackeewp';
         
         delete_option($option_name);
-        delete_site_option($option_name);
     }
 }
 
