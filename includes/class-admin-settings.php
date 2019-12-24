@@ -53,14 +53,14 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 		 */
 		public function ackeewp_register_settings() {
 			$args = array(
-				'type' 							=> 'array',
+				'type'              => 'array',
 				'sanitize_callback' => array( $this, 'ackeewp_validate_settings' ),
-				'default' 					=> array(
-																'instance_url'    => '',
-																'tracking_script' => 'tracking.js',
-																'domain_id'       => '',
-															),
-				);
+				'default'           => array(
+					'instance_url'    => '',
+					'tracking_script' => 'tracking.js',
+					'domain_id'       => '',
+				),
+			);
 			register_setting( 'ackeewp_settings_group', 'ackeewp_settings', $args );
 		}
 
@@ -80,10 +80,10 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 				return;
 			}
 
-			$ackeewp_settings 					 					= $settings;
-			$ackeewp_settings['instance_url'] 	 	= esc_url_raw( $settings['instance_url'] );
-			$ackeewp_settings['tracking_script'] 	= sanitize_text_field( $settings['tracking_script'] );
-			$ackeewp_settings['domain_id'] 		 		= sanitize_text_field( $settings['domain_id'] );
+			$ackeewp_settings                    = $settings;
+			$ackeewp_settings['instance_url']    = esc_url_raw( $settings['instance_url'] );
+			$ackeewp_settings['tracking_script'] = sanitize_text_field( $settings['tracking_script'] );
+			$ackeewp_settings['domain_id']       = sanitize_text_field( $settings['domain_id'] );
 
 			if ( isset( $settings['exclude_logged_in'] ) && 1 === $settings['exclude_logged_in'] ) {
 				$ackeewp_settings['exclude_logged_in'] = 1;
