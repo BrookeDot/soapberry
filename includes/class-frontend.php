@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore ( ignore class naming requirement )
 /**
  * Frontend Output
  *
@@ -13,10 +13,10 @@
 
 namespace AckeeWP;
 
-/**
- * Adds the WordPress settings page
- */
 if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
+	/**
+	 * Adds the WordPress settings page
+	 */
 	class AckeeWP_Frontend {
 
 		/**
@@ -53,6 +53,11 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 *
 		 * @since  1.0.0
 		 * @access private
+		 * @link https://developer.wordpress.org/reference/hooks/script_loader_tag/
+		 * @param string $tag    The `<script>` tag for the enqueued script.
+		 * @param string $handle The script's registered handle.
+		 * @param string $src    The script's source URL.
+		 * @return string
 		 */
 		public function ackeewp_generate_script( $tag, $handle, $src ) {
 			if ( 'ackeewp' === $handle ) {
@@ -66,17 +71,25 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 *
 		 * @since  1.0.0
 		 * @access private
-		 *
-		 * $option_key
+		 * @param string $option_key The key of the value we want from the ackeewp_settings option.
+		 * @return string
 		 */
 		private function ackeewp_get_options( $option_key ) {
 			$ackee_settings = get_option( 'ackeewp_settings' );
-			// reutrn if option key is not in the settings array.
+
+			/* Bail if the supplied option key is not in the settings array or the setting is not an array. */
 			if ( ! is_array( $ackee_settings ) || ! array_key_exists( $option_key, $ackee_settings ) ) {
 				return;
 			}
 
-			return ( 'instance_url' === $option_key ) ? esc_url_raw( $ackee_settings[ $option_key ] ) : sanitize_text_field( $ackee_settings[ $option_key ] );
+			/* Escape the URL if we are getting the instance_url otherwise escape the value */
+			if ( 'instance_url' === $option_key ) {
+				$option_value = esc_url_raw( $ackee_settings[ $option_key ] );
+			} else {
+				$option_value = sanitize_text_field( $ackee_settings[ $option_key ] );
+			}
+			/* Return the requested value */
+			return option_value;
 		}
 	} //end of class
 	new AckeeWP_Frontend();

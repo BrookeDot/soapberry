@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore ( ignore class naming requirement )
 /**
  * Plugin Name
  *
@@ -38,7 +38,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 /**
  * Main AckeeWP class.
  */
