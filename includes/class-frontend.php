@@ -1,4 +1,4 @@
-<?php // phpcs:ignore ( ignore class naming requirement )
+<?php // phpcs:ignore -- ignore class naming
 /**
  * Frontend Output
  *
@@ -8,19 +8,22 @@
  * @author    Brooke.
  * @copyright 2019 Brooke.
  * @license   GPL-3.0-or-later
- * @link      https://brooke.codes/plugins/ackee-wp
+ * @link      https://brooke.codes/projects/ackee-wp
  */
 
 namespace AckeeWP;
 
 if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 	/**
-	 * Adds the WordPress settings page
+	 * Class to Handle the front end display of the JavaScript output.
 	 */
 	class AckeeWP_Frontend {
 
 		/**
-		 * Constructor.
+		 * Constructor
+		 *
+		 * @since  1.0.0
+		 * @access public
 		 */
 		public function __construct() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'ackeewp_maybe_show_script' ) );
@@ -33,13 +36,17 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 * @access public
 		 */
 		public function ackeewp_maybe_show_script() {
-			// NOTE TO SELF If NO SETTING.
+			/* Bail if the options haven't been saved yet */
+			if ( ! get_option( 'ackeewp_settings' ) ) {
+				return;
+			}
 
-			// return if we are ignoring logged in visits and the user is logged in.
+			/* Don't display the script if we are not tracking logged in visits and the user is logged in. */
 			if ( true === (bool) $this->ackeewp_get_options( 'exclude_logged_in' ) && is_user_logged_in() ) {
 				return;
 			}
-			// otherwise  register and enqueue the script.
+
+			/* All conditions are met to display the script to proceed with register and enqueue the script. */
 			add_filter( 'script_loader_tag', array( $this, 'ackeewp_generate_script' ), 10, 3 );
 
 			$ackee_tracking_url = trailingslashit( $this->ackeewp_get_options( 'instance_url' ) ) . $this->ackeewp_get_options( 'tracking_script' );
@@ -61,7 +68,7 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 */
 		public function ackeewp_generate_script( $tag, $handle, $src ) {
 			if ( 'ackeewp' === $handle ) {
-				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->ackeewp_get_options( 'instance_url' ) . '"data-ackee-domain-id="' . $this->ackeewp_get_options( 'domain_id' ) . '"></script>'; // phpcs:ignore
+				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->ackeewp_get_options( 'instance_url' ) . '" data-ackee-domain-id="' . $this->ackeewp_get_options( 'domain_id' ) . '"></script>'; // phpcs:ignore
 			}
 			return $tag;
 		}
@@ -88,8 +95,8 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 			} else {
 				$option_value = sanitize_text_field( $ackee_settings[ $option_key ] );
 			}
-			/* Return the requested value */
-			return option_value;
+
+			return $option_value;
 		}
 	} //end of class
 	new AckeeWP_Frontend();

@@ -1,4 +1,4 @@
-<?php // phpcs:ignore ( ignore class naming requirement )
+<?php // phpcs:ignore -- ignore class naming
 /**
  * Admin Settings
  *
@@ -8,19 +8,22 @@
  * @author    Brooke.
  * @copyright 2019 Brooke.
  * @license   GPL-3.0-or-later
- * @link      https://brooke.codes/plugins/ackee-wp
+ * @link      https://brooke.codes/projects/ackee-wp
  */
 
 namespace AckeeWP;
 
 if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 	/**
-	 * Add the WordPress settings page and option array
+	 * Class to display and register WordPress settings page and option array
 	 */
 	class AckeeWP_Admin_Settings {
 
 		/**
 		 * Constructor.
+		 *
+		 * @since  1.0.0
+		 * @access public
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'ackeewp_settings_page' ) );
@@ -28,7 +31,7 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 		}
 
 		/**
-		 * Registers the Ackee settings page under Settings.
+		 * Registers the Ackee settings page under Settings menu.
 		 *
 		 * @since  0.1.0
 		 * @access public
@@ -46,7 +49,7 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 		}
 
 		/**
-		 * Saves the Ackee settings into the ackeewp_settings option.
+		 * Saves the sanatized data into the ackeewp_settings option.
 		 *
 		 * @since  0.1.0
 		 * @access public
@@ -75,7 +78,6 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 		 * @return array
 		 */
 		public function ackeewp_validate_settings( $settings ) {
-			// If Nonce is invalid don't update the option data.
 			if ( ! isset( $_POST['ackeewp_settings_options_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['ackeewp_settings_options_nonce'] ), 'ackeewp_settings_save_nonce' ) ) { // phpcs:ignore
 				return;
 			}
@@ -93,7 +95,7 @@ if ( ! class_exists( 'AckeeWP_Admin_Settings' ) ) :
 		}
 
 		/**
-		 * Settings page display callback.
+		 * HTML markup for the Settings page display. used by ackeewp_settings_page()
 		 *
 		 * @since  0.1.0
 		 * @access public

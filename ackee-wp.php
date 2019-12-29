@@ -1,4 +1,4 @@
-<?php // phpcs:ignore ( ignore class naming requirement )
+<?php // phpcs:ignore -- ignore class naming
 /**
  * Plugin Name
  *
@@ -9,11 +9,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Ackee WP
- * Plugin URI:        https://brooke.codes/plugins/ackee-wp
+ * Plugin URI:        https://brooke.codes/projects/ackee-wp
  * Description:       Adds the Ackee JavaScript to your WordPress site.
  * Version:           1.0.0
- * Requires at least: 4.5
- * Requires PHP:      7.0
+ * Requires at least: 4.1
+ * Requires PHP:      5.6
  * Author:            Brooke.
  * Author URI:        https://broo.ke
  * Text Domain:       ackeewp
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Main AckeeWP class.
+ * The main AckeeWP class which includes our other classes and sets things up.
  */
 class AckeeWP {
 
@@ -47,7 +47,6 @@ class AckeeWP {
 	 * Constructor.
 	 */
 	public function __construct() {
-		// Ackee WP constants.
 		define( 'ACKEE_WP_FILE', __FILE__ );
 		define( 'ACKEE_WP_DIR', trailingslashit( dirname( __FILE__ ) ) );
 		define( 'ACKEE_WP_VERSION', '1.0.0' );
