@@ -1,4 +1,4 @@
-=== Ackee WP ===
+=== Soapberry ===
 Contributors: brookedot
 Tags: tracking, analytics, stats
 Requires at least: 4.1
@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Ackee WP adds WP Admin options to support the JavaScript tracking code required by an external Ackee instance.
+Soapberry makes adds WP Admin options to support the JavaScript tracking code required by an external Ackee instance.
 
 == Description ==
 
@@ -39,7 +39,11 @@ If you would prefer to do things manually, then follow these instructions:
 
 == Frequently Asked Questions ==
 
-= The plugin is active but I do not see the tracking code =
+= Why Soapberry? =
+
+The Ackee plant is in the Sapindaceae (soapberry) family. This is a related project to the Ackee node app but it is not an official plugin. Thus the name Soapberry strives to indicate related but different.
+
+= The plugin is active but I do not see the tracking code. =
 
 First, make sure your theme has the `wp_footer()` function added before the closing body tag. The plugin hooks into the WordPress footer, making this template tag required. 
 
@@ -47,7 +51,7 @@ If you're still not seeing the tracking code, make sure your settings have been 
 
 == Screenshots ==
 
-1. WP Ackee Settings Page in WP-Admin.
+1. Soapberry Settings Page in WP Admin.
 
 == Changelog ==
 
