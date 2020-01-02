@@ -91,7 +91,7 @@ if ( ! class_exists( 'Soapberry_Frontend' ) ) :
 
 			/* Escape the URL if we are getting the instance_url otherwise escape the value */
 			if ( 'instance_url' === $option_key ) {
-				$option_value = esc_url_raw( $soapbery_settings[ $option_key ] );
+				$option_value = esc_url_raw( $soapberry_settings[ $option_key ] );
 			} else {
 				$option_value = sanitize_text_field( $soapberry_settings[ $option_key ] );
 			}

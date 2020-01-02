@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       Soapberry
  * Plugin URI:        https://brooke.codes/projects/soabperry
- * Description:       Adds the tracking JavaScript from a self-hosted Ackee instance to your WordPress.
+ * Description:       Collect data on your visitors while respecting their privacy using Soapberry with a self-hosted Ackee install.
  * Version:           1.0.0
  * Requires at least: 4.1
  * Requires PHP:      5.6
@@ -35,11 +35,11 @@
  * along with Soapberry. If not, see https://www.gnu.org/licenses/gpl-3.0.en.html.
  */
 
+namespace Soapberry;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-namespace Soapberry;
 
 /**
  * The main Soapberry class which includes our other classes and sets things up.
