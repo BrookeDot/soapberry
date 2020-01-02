@@ -1,6 +1,6 @@
-=== Ackee WP ===
+=== Soapberry ===
 Contributors: brookedot
-Tags: tracking, analytics, stats
+Tags: tracking, analytics, stats, ackee
 Requires at least: 4.1
 Tested up to: 5.3.2
 Requires PHP: 5.6
@@ -8,38 +8,42 @@ Stable tag: 1.0.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Ackee WP adds WP Admin options to support the JavaScript tracking code required by an external Ackee instance.
+Gather data on site visits while respecting visitor privacy using Soapberry alongside a self-hosted Ackee instance.
 
 == Description ==
 
-This plugin adds a settings page in WP Admin to set up the JavaScript tracking code required to track visits with an externally hosted [Ackee](https://ackee.electerious.com/) instance.
+Soapberry makes it possible to use an externally hosted [Ackee](https://ackee.electerious.com/) analytics instance with your WordPress site without editing any code. It provides a settings page in WP Admin to add the required JavaScript tracking elements to your site's footer. 
 
-To use this plugin, one must have access to an Ackee instance with their  WordPress domain added as a domain in the setting and have that domain set in the [CORS headers](https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md) of the Ackee domain.
+To use this plugin, one must have access to an Ackee instance set up with a Domain ID and [CORS headers](https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md) matching that of the WordPress domain.
 
-Ackee is a:
+The upstream Ackee project describes the project as a:
 > Self-hosted, Node.js based analytics tool for those who care about privacy. Ackee runs on your own server, analyses the traffic of your websites and provides useful statistics in a minimal interface.
 
-Currently, the plugin's functionality is limited to the essential features to add the tracker to the footer.  In the future, the functionality might extend to tracking based on roles or the ability to use Ackee's personalization analytics with the visitor's opt-in.
+The plugin's current functionality is limited to the essential features of addding the JavaScript tracker to the footer with an option to disable tracking of logged in visits. In the future, this functionality might extend to tracking based on user roles or the ability to use Ackee's personalization analytics with the visitor's consent.
 
 == Installation ==
 
-The quickest method for installing Ackee WP is:
+The quickest method for installing Soapberry is:
 
 1. Visit Plugins -> Add New in the WordPress admin
-1. Search for "WP Ackee"
+1. Search for "Soapberry"
 1. Click "Install Now"
 1. Once the install is complete, click "Activate".
-1. Go to the Settings -> WP Ackee to add your Ackee settings.
+1. Go to the Settings -> Soapberry to add your Ackee settings.
 
 If you would prefer to do things manually, then follow these instructions:
 
-1. Upload the `wp-ackee` folder to the `/wp-content/plugins/` directory
+1. Upload the `soapberry` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to the Settings -> WP Ackee to add the Ackee settings.
+1. Go to the Settings -> Soapberry to add the Ackee settings.
 
 == Frequently Asked Questions ==
 
-= The plugin is active but I do not see the tracking code =
+= Why Soapberry? =
+
+The [Ackee plant](https://en.wikipedia.org/wiki/Ackee) is in the Sapindaceae (soapberry) family. The name Soapberry strives to indicate this plugin is complementary to the work by the Ackee project while by unique enough to make clear that the two are not formally associated. Fun fact, the fruit of the Soapberry plant is used to make soap which is where Sapindus got its secondary name.
+
+= The plugin is active but I do not see the tracking code. =
 
 First, make sure your theme has the `wp_footer()` function added before the closing body tag. The plugin hooks into the WordPress footer, making this template tag required. 
 
@@ -47,7 +51,7 @@ If you're still not seeing the tracking code, make sure your settings have been 
 
 == Screenshots ==
 
-1. WP Ackee Settings Page in WP-Admin.
+1. Soapberry Settings Page in WP Admin.
 
 == Changelog ==
 
