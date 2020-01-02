@@ -1,4 +1,4 @@
-<?php // phpcs:ignore -- ignore class naming
+<?php  // phpcs:ignore -- ignore class naming
 /**
  * Frontend Output
  *
@@ -8,16 +8,16 @@
  * @author    Brooke.
  * @copyright 2019 Brooke.
  * @license   GPL-3.0-or-later
- * @link      https://brooke.codes/projects/ackee-wp
+ * @link      https://brooke.codes/projects/soapberry
  */
 
-namespace AckeeWP;
+namespace Soapberry;
 
-if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
+if ( ! class_exists( 'Soapberry_Frontend' ) ) :
 	/**
 	 * Class to Handle the front end display of the JavaScript output.
 	 */
-	class AckeeWP_Frontend {
+	class Soapberry_Frontend {
 
 		/**
 		 * Constructor
@@ -26,7 +26,7 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 * @access public
 		 */
 		public function __construct() {
-			add_action( 'wp_enqueue_scripts', array( $this, 'ackeewp_maybe_show_script' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'soapberry_maybe_show_script' ) );
 		}
 
 		/**
@@ -35,24 +35,24 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 * @since  1.0.0
 		 * @access public
 		 */
-		public function ackeewp_maybe_show_script() {
+		public function soapberry_maybe_show_script() {
 			/* Bail if the options haven't been saved yet */
-			if ( ! get_option( 'ackeewp_settings' ) ) {
+			if ( ! get_option( 'soapberry_settings' ) ) {
 				return;
 			}
 
 			/* Don't display the script if we are not tracking logged in visits and the user is logged in. */
-			if ( true === (bool) $this->ackeewp_get_options( 'exclude_logged_in' ) && is_user_logged_in() ) {
+			if ( true === (bool) $this->soapberry_get_options( 'exclude_logged_in' ) && is_user_logged_in() ) {
 				return;
 			}
 
 			/* All conditions are met to display the script to proceed with register and enqueue the script. */
-			add_filter( 'script_loader_tag', array( $this, 'ackeewp_generate_script' ), 10, 3 );
+			add_filter( 'script_loader_tag', array( $this, 'soapberry_generate_script' ), 10, 3 );
 
-			$ackee_tracking_url = trailingslashit( $this->ackeewp_get_options( 'instance_url' ) ) . $this->ackeewp_get_options( 'tracking_script' );
+			$ackee_tracking_url = trailingslashit( $this->soapberry_get_options( 'instance_url' ) ) . $this->soapberry_get_options( 'tracking_script' );
 
-			wp_register_script( 'ackeewp', $ackee_tracking_url, '', ACKEE_WP_VERSION, 'true' );
-			wp_enqueue_script( 'ackeewp' );
+			wp_register_script( 'soapberry', $ackee_tracking_url, '', SOAPBERRY_VERSION, 'true' );
+			wp_enqueue_script( 'soapberry' );
 		}
 
 		/**
@@ -66,9 +66,9 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 * @param string $src    The script's source URL.
 		 * @return string
 		 */
-		public function ackeewp_generate_script( $tag, $handle, $src ) {
-			if ( 'ackeewp' === $handle ) {
-				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->ackeewp_get_options( 'instance_url' ) . '" data-ackee-domain-id="' . $this->ackeewp_get_options( 'domain_id' ) . '"></script>'; // phpcs:ignore
+		public function soapberry_generate_script( $tag, $handle, $src ) {
+			if ( 'soapberry' === $handle ) {
+				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->soapberry_get_options( 'instance_url' ) . '" data-ackee-domain-id="' . $this->soapberry_get_options( 'domain_id' ) . '"></script>'; // phpcs:ignore -- False postive, not outputing script.
 			}
 			return $tag;
 		}
@@ -78,27 +78,27 @@ if ( ! class_exists( 'AckeeWP_Frontend' ) ) :
 		 *
 		 * @since  1.0.0
 		 * @access private
-		 * @param string $option_key The key of the value we want from the ackeewp_settings option.
+		 * @param string $option_key The key of the value we want from the soapberry_settings option.
 		 * @return string
 		 */
-		private function ackeewp_get_options( $option_key ) {
-			$ackee_settings = get_option( 'ackeewp_settings' );
+		private function soapberry_get_options( $option_key ) {
+			$soapberry_settings = get_option( 'soapberry_settings' );
 
 			/* Bail if the supplied option key is not in the settings array or the setting is not an array. */
-			if ( ! is_array( $ackee_settings ) || ! array_key_exists( $option_key, $ackee_settings ) ) {
+			if ( ! is_array( $soapberry_settings ) || ! array_key_exists( $option_key, $soapberry_settings ) ) {
 				return;
 			}
 
 			/* Escape the URL if we are getting the instance_url otherwise escape the value */
 			if ( 'instance_url' === $option_key ) {
-				$option_value = esc_url_raw( $ackee_settings[ $option_key ] );
+				$option_value = esc_url_raw( $soapberry_settings[ $option_key ] );
 			} else {
-				$option_value = sanitize_text_field( $ackee_settings[ $option_key ] );
+				$option_value = sanitize_text_field( $soapberry_settings[ $option_key ] );
 			}
 
 			return $option_value;
 		}
 	} //end of class
-	new AckeeWP_Frontend();
+	new Soapberry_Frontend();
 endif;
 
