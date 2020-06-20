@@ -2,9 +2,9 @@
 Contributors: brookedot
 Tags: tracking, analytics, stats, ackee
 Requires at least: 4.1
-Tested up to: 5.3.2
-Requires PHP: 5.6
-Stable tag: 1.0.0
+Tested up to: 5.4
+Requires PHP: 7.2
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Gather data on site visits while respecting visitor privacy using Soapberry alon
 
 Soapberry makes it possible to use an externally hosted [Ackee](https://ackee.electerious.com/) analytics instance with your WordPress site without editing any code. It provides a settings page in WP Admin to add the required JavaScript tracking elements to your site's footer. 
 
-To use this plugin, one must have access to an Ackee instance set up with a Domain ID and [CORS headers](https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md) matching that of the WordPress domain.
+To use this plugin, one must have access to an Ackee instance set up with a Domain ID and [CORS headers](https://docs.ackee.electerious.com/#/docs/CORS%20headers) matching that of the WordPress domain.
 
 The upstream Ackee project describes the project as a:
 > Self-hosted, Node.js based analytics tool for those who care about privacy. Ackee runs on your own server, analyses the traffic of your websites and provides useful statistics in a minimal interface.
@@ -54,6 +54,14 @@ If you're still not seeing the tracking code, make sure your settings have been 
 1. Soapberry Settings Page in WP Admin.
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed: tracking script is now output with a line break at the end.
+* Fixed: Validation improvements for Ackee Domain ID and consent cookie fields.
+* Enhancements: PHPCS ignore is more explicit.
+* Added: Respects Do Not Track by default with an option to override and always output the tracker.
+* Added: A cookie setting to allow visitors to opt-in to Ackee.
+* Added: An option to output the detailed view.
 
 = 1.0 =
 * Inital release
