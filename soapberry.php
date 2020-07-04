@@ -1,23 +1,22 @@
-<?php // phpcs:ignore -- ignore class naming
+<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName -- We don't use core's class naming convention
 /**
  * Plugin Name
  *
  * @package   Soapberry
  * @author    Brooke.
- * @copyright 2020 Brooke.
+ * @copyright 2019-2020 Brooke.
  * @license   GPL-3.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name:       Soapberry
  * Plugin URI:        https://brooke.codes/projects/soabperry
  * Description:       Collect data on your visitors while respecting their privacy using Soapberry with a self-hosted Ackee install.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 4.1
- * Requires PHP:      5.6
+ * Requires PHP:      7.2
  * Author:            Brooke.
  * Author URI:        https://broo.ke
  * Text Domain:       soapberry
- * Domain Path:       /languages
  * License:           GPL v3 or later
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
 
