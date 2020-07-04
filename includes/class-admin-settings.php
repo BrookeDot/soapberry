@@ -210,7 +210,7 @@ if ( ! class_exists( 'Soapberry_Admin_Settings' ) ) :
 										'%s<br>%s',
 										esc_html__( 'headers sent by the browser.', 'soapberry' ),
 										esc_html__( 'If checked, the Ackee tracker will still be output regrdless of the visitor\'s Do Not Track preference', 'soapberry' )
-									),
+									)
 								);
 								?>
 								</label>
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Soapberry_Admin_Settings' ) ) :
 										'%s <code> %s</code> %s',
 										esc_html__( 'If checked, the Ackee tracker will include the', 'soapberry' ),
 										esc_html__( 'detailed' ),
-										esc_html__( 'parameter.', 'soapberry' ),
+										esc_html__( 'parameter.', 'soapberry' )
 									),
 									/* Output link to more information on the detailed view*/
 									sprintf(
@@ -238,8 +238,8 @@ if ( ! class_exists( 'Soapberry_Admin_Settings' ) ) :
 										esc_html__( 'As this data may be considered', 'soapberry' ),
 										esc_url( 'https://docs.ackee.electerious.com/#/docs/Anonymization#personal-data' ),
 										esc_html__( 'Personal Data', 'soapberry' ),
-										esc_html__( ', requiring a consent cookie is recommended.', 'soapberry' ),
-									),
+										esc_html__( ', requiring a consent cookie is recommended.', 'soapberry' )
+									)
 								);
 							?>
 								</label>
