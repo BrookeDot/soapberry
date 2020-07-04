@@ -11,7 +11,7 @@
  * Plugin Name:       Soapberry
  * Plugin URI:        https://brooke.codes/projects/soabperry
  * Description:       Collect data on your visitors while respecting their privacy using Soapberry with a self-hosted Ackee install.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 4.1
  * Requires PHP:      7.2
  * Author:            Brooke.
