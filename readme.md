@@ -47,5 +47,13 @@ If you're still not seeing the tracking code, make sure your settings have been 
 
 ## Changelog 
 
-### 1.0 
+### 1.1.0
+* Fixed: tracking script is now output with a line break at the end.+
+* Fixed: Validation improvements for Ackee Domain ID and consent cookie fields.
+* Enhancements: PHPCS ignore is more explicit.
+* Added: Respects Do Not Track by default with an option to override and always output the tracker.
+* Added: A cookie setting to allow visitors to opt-in to Ackee.
+* Added: An option to output the `detailed` view.
+
+### 1.0.0
 * Inital release

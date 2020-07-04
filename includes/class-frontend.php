@@ -1,12 +1,12 @@
-<?php  // phpcs:ignore -- ignore class naming
+<?php  // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName -- We don't use core's class naming convention
 /**
  * Frontend Output
  *
  * This file is used to store functions that control the Ackee output on the front end of a site.
  *
- * @package   Ackee_WP
+ * @package   Soapberry
  * @author    Brooke.
- * @copyright 2019 Brooke.
+ * @copyright 2019-2020 Brooke.
  * @license   GPL-3.0-or-later
  * @link      https://brooke.codes/projects/soapberry
  */
@@ -46,6 +46,17 @@ if ( ! class_exists( 'Soapberry_Frontend' ) ) :
 				return;
 			}
 
+			/* Don't display the script if the visitor has Do Not Track enabled (unless we have chosen to override it). */
+			if ( true !== (bool) $this->soapberry_get_options( 'ignore_do_not_track' ) && ( array_key_exists( 'HTTP_DNT', $_SERVER ) && ( 1 === (int) $_SERVER['HTTP_DNT'] ) ) ) {
+				return;
+			}
+
+			/* Don't display the script if a consent cookie is required but has not been set. */
+			$consent_cookie = $this->soapberry_get_options( 'consent_cookie' );
+			if ( ! empty( $consent_cookie ) && ! isset( $_COOKIE[ sanitize_text_field( $consent_cookie ) ] ) ) {
+				return;
+			}
+
 			/* All conditions are met to display the script to proceed with register and enqueue the script. */
 			add_filter( 'script_loader_tag', array( $this, 'soapberry_generate_script' ), 10, 3 );
 
@@ -68,7 +79,9 @@ if ( ! class_exists( 'Soapberry_Frontend' ) ) :
 		 */
 		public function soapberry_generate_script( $tag, $handle, $src ) {
 			if ( 'soapberry' === $handle ) {
-				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->soapberry_get_options( 'instance_url' ) . '" data-ackee-domain-id="' . $this->soapberry_get_options( 'domain_id' ) . '"></script>'; // phpcs:ignore -- False postive, not outputing script.
+				$detailed = ( true === (bool) $this->soapberry_get_options( 'detailed_enabled' ) ) ? " data-ackee-opts='{\"detailed\":true}'" : '';
+
+				$tag = '<script async src="' . $src . '" data-ackee-server="' . $this->soapberry_get_options( 'instance_url' ) . '" data-ackee-domain-id="' . $this->soapberry_get_options( 'domain_id' ) . '"' . $detailed . '></script>' . "\n\t"; // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript -- False postive, not outputing script.
 			}
 			return $tag;
 		}
